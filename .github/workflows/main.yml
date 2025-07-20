@@ -1,0 +1,2 @@
+- name: Minecraft Plugin Runtime Test
+  uses: FN-FAL113/minecraft-plugin-runtime-test@v1.1.7
