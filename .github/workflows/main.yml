@@ -54,29 +54,57 @@ jobs:
       matrix:
         include:
           # Minecraft 1.18.x Serie - Java 17
+          - mcVersion: '1.18'
+            javaVersion: '17'
+          - mcVersion: '1.18.1'
+            javaVersion: '17'
           - mcVersion: '1.18.2'
             javaVersion: '17'
           
           # Minecraft 1.19.x Serie - Java 17
+          - mcVersion: '1.19'
+            javaVersion: '17'
+          - mcVersion: '1.19.1'
+            javaVersion: '17'
+          - mcVersion: '1.19.2'
+            javaVersion: '17'
+          - mcVersion: '1.19.3'
+            javaVersion: '17'
           - mcVersion: '1.19.4'
             javaVersion: '17'
           
           # Minecraft 1.20.x Serie - Java 17/21
+          - mcVersion: '1.20'
+            javaVersion: '17'
           - mcVersion: '1.20.1'
+            javaVersion: '17'
+          - mcVersion: '1.20.2'
+            javaVersion: '17'
+          - mcVersion: '1.20.3'
             javaVersion: '17'
           - mcVersion: '1.20.4'
             javaVersion: '17'
+          - mcVersion: '1.20.5'
+            javaVersion: '21'
           - mcVersion: '1.20.6'
             javaVersion: '21'
           
           # Minecraft 1.21.x Serie - Java 21
           - mcVersion: '1.21'
             javaVersion: '21'
+          - mcVersion: '1.21.1'
+            javaVersion: '21'
+          - mcVersion: '1.21.2'
+            javaVersion: '21'
           - mcVersion: '1.21.3'
+            javaVersion: '21'
+          - mcVersion: '1.21.4'
+            javaVersion: '21'
+          - mcVersion: '1.21.7'
             javaVersion: '21'
     
     steps:        
-      - uses: FN-FAL113/minecraft-plugin-runtime-test@v1.1.1
+      - uses: FN-FAL113/minecraft-plugin-runtime-test@v1.1.7
         with:
           server-version: ${{ matrix.mcVersion }}
           java-version: ${{ matrix.javaVersion }}
