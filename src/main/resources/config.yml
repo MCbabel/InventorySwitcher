@@ -1,0 +1,30 @@
+# InventorySwitcher v1.0.0 Configuration
+# Compatible with Minecraft 1.18 - 1.21.7
+# Supports Paper, Spigot, Bukkit and forks
+
+# Enable separate inventories for specific game modes
+# Set to true to enable separate inventories for that mode
+enabled-modes:
+  survival: true     # Separate inventory for Survival mode
+  creative: true     # Separate inventory for Creative mode
+  adventure: true    # Separate inventory for Adventure mode
+  spectator: true    # Separate inventory for Spectator mode
+
+# General settings
+settings:
+  # Should inventories persist across server restarts?
+  persist-across-restarts: true
+  
+  # Auto-save interval in seconds (0 to disable auto-save)
+  auto-save-interval: 300
+  
+  # Debug mode - enables additional logging
+  debug-mode: false
+  
+  # Clear inventory when switching to a mode for the first time
+  clear-on-first-switch: false
+
+# Messages (leave empty to disable messages)
+messages:
+  inventory-switched: ""  # Message when inventory is switched
+  inventory-saved: ""     # Message when inventory is saved

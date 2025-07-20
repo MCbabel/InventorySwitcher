@@ -1,0 +1,41 @@
+# Gradle
+.gradle/
+build/
+gradle-app.setting
+
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+.project
+.classpath
+.settings/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Java
+*.class
+*.jar
+!gradle/wrapper/gradle-wrapper.jar
+*.war
+*.ear
+
+# Logs
+*.log
+
+# Runtime
+/world/
+/world_nether/
+/world_the_end/
+/logs/
+server.properties
+eula.txt
+/plugins/
+!/plugins/InventorySwitcher/
+
+# Test servers
+test-servers/

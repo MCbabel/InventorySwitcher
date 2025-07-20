@@ -1,0 +1,79 @@
+plugins {
+    id("java")
+    id("net.minecrell.plugin-yml.bukkit") version "0.6.0"  // Plugin für die automatische Generierung der plugin.yml
+    id("com.github.johnrengelman.shadow") version "8.1.1"  // Für das Einbinden von Abhängigkeiten
+}
+
+group = "de.mcbabel.inventoryswitcher"
+version = "1.0.0"
+archivesBaseName = "InventorySwitcher"
+
+repositories {
+    mavenCentral()
+    maven {
+        url = "https://repo.papermc.io/repository/maven-public/"
+    }
+    maven {
+        url = "https://oss.sonatype.org/content/repositories/snapshots"
+    }
+    maven {
+        url = "https://libraries.minecraft.net/"
+    }
+}
+
+dependencies {
+    compileOnly("io.papermc.paper:paper-api:1.20.1-R0.1-SNAPSHOT")  // Paper API für 1.20.1 (kompatibel mit 1.18-1.21.7)
+    
+    // Weitere Abhängigkeiten je nach Bedarf
+    implementation("org.bstats:bstats-bukkit:3.0.2")  // Beispiel für eine Statistik-Bibliothek
+    
+    // Für Tests
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.10.0")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.10.0")
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+// Configure Java compilation
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+    options.release = 17
+}
+
+tasks {
+    
+    processResources {
+        filesMatching("**/*.yml") {
+            expand(project.properties)  // Ersetzt Platzhalter in YML-Dateien
+        }
+    }
+    
+    test {
+        useJUnitPlatform()
+    }
+    
+    shadowJar {
+        archiveClassifier.set("")  // Entfernt den Classifier aus dem JAR-Namen
+        relocate("org.bstats", "de.mcbabel.bstats")  // Verschiebt externe Bibliotheken in eigenen Namespace
+    }
+    
+    build {
+        dependsOn(shadowJar)
+    }
+}
+
+// Konfiguration für die automatische Generierung der plugin.yml
+bukkit {
+    name = "InventorySwitcher"
+    version = project.version.toString()
+    main = "de.mcbabel.inventoryswitcher.InventorySwitcher"
+    apiVersion = "1.18"
+    authors = ["MCbabel"]
+    description = "Plugin for separate inventories per game mode"
+    website = "https://github.com/mcbabel/InventorySwitcher"
+    
+    softDepend = ["WorldEdit", "WorldGuard", "Essentials"]
+}
