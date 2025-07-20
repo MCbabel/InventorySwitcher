@@ -21,6 +21,7 @@ jobs:
       uses: actions/setup-java@v4
       with:
         java-version: 17
+        distribution: 'temurin'  # <- Das war der fehlende Parameter!
         
     - name: Setup Gradle
       uses: gradle/gradle-build-action@v2
