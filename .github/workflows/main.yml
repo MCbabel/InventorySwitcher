@@ -21,10 +21,17 @@ jobs:
       uses: actions/setup-java@v4
       with:
         java-version: 17
-        distribution: 'temurin'  # <- Das war der fehlende Parameter!
+        distribution: 'temurin'
         
     - name: Setup Gradle
       uses: gradle/gradle-build-action@v2
+        
+    - name: Generate Gradle Wrapper (if missing)
+      run: |
+        if [ ! -f "./gradlew" ]; then
+          echo "Gradle wrapper not found, generating..."
+          gradle wrapper
+        fi
         
     - name: Make gradlew executable
       run: chmod +x ./gradlew
